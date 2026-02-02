@@ -1,43 +1,27 @@
 import React, { useState } from 'react'
-import data from "../data"
-import "../App.css";
 
+const Card = (props) => {
+    const [readmore, setReadmore] = useState(false)
 
-function Card  ({id,name,info,images,price,removeTour}) {
-
-    const[readmore,setReadMore]= useState(false)
-    const description =  readmore ? info :  `${info.substring(0,200)}...`
-
-    function readmoreHandler(){
-        setReadMore(!readmore)
-    }
-    function notInterestedHandler(id){
-        
-    }
-  return (
-  
-      <div className='card'>
-        <img src={images} alt="" className='image' />
-        <div className="tour-info">
-            <div className='tour-details'>
-                <h4 className='tour-price'> ₹ {price}</h4>
-                <h4 className='tour-name'>{name}</h4>
+    let description = readmore ? props.tour.info : `${props.tour.info.substring(0, 200)}....`;
+    return (
+        <div className="card">
+            <img className='cityImage' src={props.tour.image} alt="cityImage" />
+            <div className="tourInfo">
+                <div className="tourDetails">
+                    <h4 className="tourPrice">{props.tour.price}</h4>
+                    <h4 className="tourCityName">{props.tour.name}</h4>
+                </div>
+                <div className="description">
+                    {description}
+                    <span className='readMore' onClick={() => { setReadmore(!readmore) }}>
+                        {readmore ? " Show Less" : " Read More"}
+                    </span>
+                </div>
             </div>
-            <div className="description">
-                {description}
-                <span onClick={readmoreHandler} className='read-more cursor-pointer text-blue-700'>
-                {readmore ?` Show Less` :`Read More`}
-                </span>
-            </div>
+            <button className='notIntrestedBtn' onClick={() => props.getRemoveId(props.tour.id)}>Not Intrested</button>
         </div>
-       
-            <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ' onClick={() => removeTour(id )}>
-                Not Interested
-            </button>
-        
-      </div>
-    
-  )
+    )
 }
 
 export default Card
