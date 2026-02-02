@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import data from "./data";
-import Tours from './Components/Tours';
-import Refresh from './Components/Refresh';
+import Tours from './components/Tours';
+import Refresh from './components/Refresh';
 
 const App = () => {
   const [tour, setTour] = useState(data);
