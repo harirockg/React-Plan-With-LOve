@@ -16,7 +16,7 @@ const Tours = (props) => {
             <div className="cardsContainer">
                 {
                     props.tours.map((tour) => {
-                        return <Card tour={tour} getRemoveId = {getId}/>
+                        return <Card key={tour.id} tour={tour} getRemoveId = {getId}/>
                     })
                 }
             </div>
